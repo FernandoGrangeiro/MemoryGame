@@ -26,8 +26,8 @@ class GameActivity : AppCompatActivity(), ItemInterface {
     private fun setupGame() {
         userModel.life = when (dificulty) {
             1 -> 5
-            2 -> 3
-            else -> 2
+            2 -> 4
+            else -> 3
         }
         setLifeText(userModel.life.toString())
         setDificultyText()
@@ -40,18 +40,20 @@ class GameActivity : AppCompatActivity(), ItemInterface {
 
     private fun setDificultyText() {
         dificultyText.text = when (dificulty) {
-            1 -> "Dificuldade Facil"
+            1 -> "Dificuldade Fácil"
             2 -> "Dificuldade Médio"
-            else -> "Dificuldade Dificil"
+            else -> "Dificuldade Difícil"
         }
     }
 
     private fun getArrayList(): ArrayList<ItemModel> {
         return when (dificulty) {
-            1 -> arrayListOf(ItemModel("1", R.drawable.stark), ItemModel("2", R.drawable.targaryen)
-                    , ItemModel("4", R.drawable.martell), ItemModel("3", R.drawable.lannister)
-                    , ItemModel("4", R.drawable.martell), ItemModel("1", R.drawable.stark)
-                    , ItemModel("2", R.drawable.targaryen), ItemModel("3", R.drawable.lannister))
+            1 -> arrayListOf(ItemModel("1", R.drawable.stark), ItemModel("5", R.drawable.bolton)
+                    , ItemModel("4", R.drawable.martell), ItemModel("2", R.drawable.targaryen)
+                    , ItemModel("3", R.drawable.lannister), ItemModel("1", R.drawable.stark)
+                    , ItemModel("6", R.drawable.baratheon), ItemModel("5", R.drawable.bolton)
+                    , ItemModel("2", R.drawable.targaryen), ItemModel("3", R.drawable.lannister)
+                    , ItemModel("4", R.drawable.martell), ItemModel("6", R.drawable.baratheon))
             2 -> arrayListOf(
                     ItemModel("1", R.drawable.stark), ItemModel("2", R.drawable.targaryen)
                     , ItemModel("4", R.drawable.martell), ItemModel("6", R.drawable.baratheon)
@@ -66,15 +68,13 @@ class GameActivity : AppCompatActivity(), ItemInterface {
                         , ItemModel("5", R.drawable.bolton), ItemModel("1", R.drawable.stark)
                         , ItemModel("2", R.drawable.targaryen), ItemModel("3", R.drawable.lannister)
                         , ItemModel("5", R.drawable.bolton), ItemModel("4", R.drawable.martell)
-                        , ItemModel("6", R.drawable.baratheon), ItemModel("3", R.drawable.lannister)
-                        , ItemModel("7", R.drawable.arryn), ItemModel("8", R.drawable.greyjoy)
-                        , ItemModel("7", R.drawable.arryn), ItemModel("8", R.drawable.greyjoy))
+                        , ItemModel("6", R.drawable.baratheon), ItemModel("3", R.drawable.lannister))
             }
         }
     }
 
     private fun setAdapter() {
-        val layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
+        val layoutManager = GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false)
         lista?.run {
             this.layoutManager = layoutManager
             adapter = recyclerAdapter.apply { add(getArrayList()) }

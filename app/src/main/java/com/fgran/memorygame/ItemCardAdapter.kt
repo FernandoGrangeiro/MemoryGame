@@ -58,17 +58,18 @@ class ItemCardAdapter(private val context: Context)
                             firstPosition = ""
                             firstClick = true
                             notifyDataSetChanged()
+                            var cont = 0
                             itens.forEach {
-                                if (!it.isCliked) {
-                                    isEnd = false
-                                    return@forEach
+                                if (it.isCliked) {
+                                    cont++
                                 } else {
-                                    isEnd = true
+                                    cont--
                                 }
-
                             }
-                            itemInterface.endGame(isEnd)
-                        }, 500)
+                            if (cont == itens.size) {
+                                itemInterface.endGame(true)
+                            }
+                        }, 300)
 
                     } else {
                         itemInterface.setIdClicked(item.itemId)
