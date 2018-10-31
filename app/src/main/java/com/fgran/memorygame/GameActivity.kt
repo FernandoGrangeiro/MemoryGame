@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_game.*
+import java.util.*
 
 class GameActivity : AppCompatActivity(), ItemInterface {
 
@@ -77,10 +78,22 @@ class GameActivity : AppCompatActivity(), ItemInterface {
         val layoutManager = GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false)
         lista?.run {
             this.layoutManager = layoutManager
-            adapter = recyclerAdapter.apply { add(getArrayList()) }
+            adapter = recyclerAdapter.apply { add(embaralharArray()) }
             clearOnScrollListeners()
             stopNestedScroll()
         }
+    }
+
+    private fun embaralharArray(): ArrayList<ItemModel> {
+        val array = getArrayList()
+        val random = Random()
+        for (i in array.indices) {
+            val j = random.nextInt(array.size)
+            val x = array[i]
+            array[i] = array[j]
+            array[j] = x
+        }
+        return array
     }
 
 
