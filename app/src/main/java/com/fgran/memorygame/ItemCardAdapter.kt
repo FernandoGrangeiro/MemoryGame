@@ -41,6 +41,11 @@ class ItemCardAdapter(private val context: Context)
                 }
                 setOnClickListener {
                     if (!firstClick) {
+                        if(item.isCliked){
+                            itemInterface.setIdClicked("")
+                            firstPosition = ""
+                            firstClick = true
+                        }
                         setImageDrawable(ContextCompat.getDrawable(context, item.url))
                         val handler = Handler()
                         handler.postDelayed({

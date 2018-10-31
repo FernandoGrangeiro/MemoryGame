@@ -11,7 +11,7 @@ class EndGameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_end_game)
         if (intent.getBooleanExtra("victory", false)) {
-            textView7.text = "Vitoria"
+            textView7.text = "Vitória"
         } else {
             textView7.text = "Derrota"
         }

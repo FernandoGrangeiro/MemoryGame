@@ -21,6 +21,9 @@ class GameActivity : AppCompatActivity(), ItemInterface {
         setContentView(R.layout.activity_game)
         dificulty = intent.getIntExtra("dificulty", 1)
         setupGame()
+        imageView2.setOnClickListener {
+            finish()
+        }
 
     }
 
@@ -36,14 +39,14 @@ class GameActivity : AppCompatActivity(), ItemInterface {
     }
 
     private fun setLifeText(life: String) {
-        lifeText.text = life
+        lifeText.text = "Vidas: $life"
     }
 
     private fun setDificultyText() {
         dificultyText.text = when (dificulty) {
-            1 -> "Dificuldade: Fácil"
-            2 -> "Dificuldade: Médio"
-            else -> "Dificuldade: Difícil"
+            1 -> "Fácil"
+            2 -> "Médio"
+            else -> "Difícil"
         }
     }
 
@@ -99,7 +102,18 @@ class GameActivity : AppCompatActivity(), ItemInterface {
 
     override fun onClicked(id: String): Boolean {
         return if (lastIdClicked == id) {
+            val limiter = when (dificulty) {
+                3 -> 3
+                2 -> 4
+                else -> 5
+            }
+            if (userModel.life < limiter) {
+                userModel.life++
+                setLifeText(userModel.life.toString())
+            }
+
             true
+
         } else {
             verifyUserLife()
             false

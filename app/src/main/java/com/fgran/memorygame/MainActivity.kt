@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonPlay.setOnClickListener {
-            finish()
             startActivity(Intent(this, GameActivity::class.java).apply {
                 putExtra("dificulty", selected)
             })
