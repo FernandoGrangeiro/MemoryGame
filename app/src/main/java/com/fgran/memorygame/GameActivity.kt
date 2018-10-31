@@ -41,9 +41,9 @@ class GameActivity : AppCompatActivity(), ItemInterface {
 
     private fun setDificultyText() {
         dificultyText.text = when (dificulty) {
-            1 -> "Dificuldade Fácil"
-            2 -> "Dificuldade Médio"
-            else -> "Dificuldade Difícil"
+            1 -> "Dificuldade: Fácil"
+            2 -> "Dificuldade: Médio"
+            else -> "Dificuldade: Difícil"
         }
     }
 
